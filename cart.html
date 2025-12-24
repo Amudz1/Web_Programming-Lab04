@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+    <title>Корзина - Fashion Shop</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/icons/icon-192x192.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-shopping-bag"></i> Fashion Shop
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Товары</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="team.html">Команда</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge badge-danger" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-gradient-primary text-white py-5">
+        <div class="container text-center">
+            <h1 class="display-4">Корзина</h1>
+            <p class="lead">Ваши выбранные товары</p>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0">Товары в корзине</h5>
+                        </div>
+                        <div class="card-body" id="cartItems">
+                            <!-- Товары будут добавляться динамически -->
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="products.html" class="btn btn-outline-primary">
+                            <i class="fas fa-arrow-left"></i> Продолжить покупки
+                        </a>
+                        <button class="btn btn-outline-danger" id="clearCart">
+                            <i class="fas fa-trash"></i> Очистить корзину
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card sticky-top" style="top: 100px;">
+                        <div class="card-header bg-gradient-primary text-white">
+                            <h5 class="mb-0">Итого</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Товары:</span>
+                                <span id="subtotal">0 ₽</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Доставка:</span>
+                                <span id="shipping">300 ₽</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-3">
+                                <strong>Всего:</strong>
+                                <strong id="total" class="text-danger">0 ₽</strong>
+                            </div>
+                            <a href="checkout.html" class="btn btn-primary btn-block btn-lg">
+                                Оформить заказ
+                            </a>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <div class="input-group">
+                                <input id="promoCode" type="text" class="form-control" placeholder="Промокод">
+                                <div class="input-group-append">
+                                    <button id="applyPromo" class="btn btn-outline-secondary">Применить</button>
+                                </div>
+                            </div>
+                            <small id="promoMessage" class="form-text text-muted mt-2"></small>
+
+                            <script>
+                            (function(){
+                                var input = document.getElementById('promoCode');
+                                var btn = document.getElementById('applyPromo');
+                                var msg = document.getElementById('promoMessage');
+                                function parseMoney(el){
+                                    return parseFloat((el.textContent||'').replace(/[^\d.,-]/g,'').replace(',','.'))||0;
+                                }
+                                function formatMoney(n){ return n.toFixed(2).replace('.',',') + ' ₽'; }
+
+                                btn.addEventListener('click', function(){
+                                    var code = input.value.trim();
+                                    if(!code){
+                                        msg.textContent = 'Введите промокод';
+                                        msg.className = 'form-text text-danger mt-2';
+                                        return;
+                                    }
+                                    if(btn.dataset.applied) return;
+                                    var subtotalEl = document.getElementById('subtotal');
+                                    var shippingEl = document.getElementById('shipping');
+                                    var totalEl = document.getElementById('total');
+
+                                    var subtotal = parseMoney(subtotalEl);
+                                    var shipping = parseMoney(shippingEl);
+
+                                    // 99% скидка => покупатель платит 1% от суммы товаров
+                                    var discounted = +(subtotal * 0.01);
+                                    subtotalEl.textContent = formatMoney(discounted);
+                                    totalEl.textContent = formatMoney(discounted + shipping);
+
+                                    msg.textContent = 'Промокод применён — 99% скидка';
+                                    msg.className = 'form-text text-success mt-2';
+                                    input.disabled = true;
+                                    btn.disabled = true;
+                                    btn.dataset.applied = '1';
+                                });
+                            })();
+                            </script>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-2">&copy; 2025 Fashion Shop. Все права защищены. По-прежнему кроме ваших</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+    <title>Товары - Fashion Shop</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/icons/icon-192x192.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .filter-sidebar {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .filter-section {
+            margin-bottom: 25px;
+        }
+        .filter-section h6 {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+        }
+        .product-card {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-actions {
+            margin-top: auto;
+        }
+        .view-toggle {
+            display: flex;
+            gap: 10px;
+        }
+        .view-toggle .btn {
+            padding: 5px 15px;
+        }
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-shopping-bag"></i> Fashion Shop
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="products.html">Товары</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="team.html">Команда</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge badge-danger" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-gradient-primary text-white py-5">
+        <div class="container text-center">
+            <h1 class="display-4">Каталог товаров</h1>
+            <p class="lead">Найдите идеальный стиль для себя</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Поиск товаров...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-right">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <span class="mr-3">Сортировка:</span>
+                        <select class="form-control w-auto mr-3" id="sortSelect">
+                            <option value="default">По умолчанию</option>
+                            <option value="price-asc">Цена: по возрастанию</option>
+                            <option value="price-desc">Цена: по убыванию</option>
+                            <option value="name">По названию</option>
+                        </select>
+                        <div class="view-toggle">
+                            <button class="btn btn-outline-primary active" id="gridView">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button class="btn btn-outline-primary" id="listView">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Filters Sidebar -->
+                <div class="col-lg-3 mb-4">
+                    <div class="filter-sidebar">
+                        <h5 class="mb-4">Фильтры</h5>
+                        
+                        <!-- Category Filter -->
+                        <div class="filter-section">
+                            <h6>Категория</h6>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input type="checkbox" class="custom-control-input category-filter" id="cat1" value="clothing" checked>
+                                <label class="custom-control-label" for="cat1">Одежда</label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input type="checkbox" class="custom-control-input category-filter" id="cat2" value="shoes" checked>
+                                <label class="custom-control-label" for="cat2">Обувь</label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input type="checkbox" class="custom-control-input category-filter" id="cat3" value="accessories" checked>
+                                <label class="custom-control-label" for="cat3">Аксессуары</label>
+                            </div>
+                        </div>
+
+                        <!-- Price Filter -->
+                        <div class="filter-section">
+                            <h6>Цена</h6>
+                            <div class="custom-control custom-radio mb-2">
+                                <input type="radio" class="custom-control-input price-filter" id="price1" name="price" value="all" checked>
+                                <label class="custom-control-label" for="price1">Все</label>
+                            </div>
+                            <div class="custom-control custom-radio mb-2">
+                                <input type="radio" class="custom-control-input price-filter" id="price2" name="price" value="0-2000">
+                                <label class="custom-control-label" for="price2">До 2000 ₽</label>
+                            </div>
+                            <div class="custom-control custom-radio mb-2">
+                                <input type="radio" class="custom-control-input price-filter" id="price3" name="price" value="2000-5000">
+                                <label class="custom-control-label" for="price3">2000 - 5000 ₽</label>
+                            </div>
+                            <div class="custom-control custom-radio mb-2">
+                                <input type="radio" class="custom-control-input price-filter" id="price4" name="price" value="5000+">
+                                <label class="custom-control-label" for="price4">От 5000 ₽</label>
+                            </div>
+                        </div>
+
+                        <!-- Size Filter -->
+                        <div class="filter-section">
+                            <h6>Размер</h6>
+                            <div class="btn-group-toggle d-flex flex-wrap gap-2" data-toggle="buttons">
+                                <label class="btn btn-outline-primary btn-sm m-1">
+                                    <input type="checkbox" class="size-filter" value="XS"> XS
+                                </label>
+                                <label class="btn btn-outline-primary btn-sm m-1">
+                                    <input type="checkbox" class="size-filter" value="S"> S
+                                </label>
+                                <label class="btn btn-outline-primary btn-sm m-1">
+                                    <input type="checkbox" class="size-filter" value="M"> M
+                                </label>
+                                <label class="btn btn-outline-primary btn-sm m-1">
+                                    <input type="checkbox" class="size-filter" value="L"> L
+                                </label>
+                                <label class="btn btn-outline-primary btn-sm m-1">
+                                    <input type="checkbox" class="size-filter" value="XL"> XL
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-outline-secondary btn-block" id="resetFilters">
+                            <i class="fas fa-redo"></i> Сбросить фильтры
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="col-lg-9">
+                    <div id="productsContainer" class="product-grid">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-2">&copy; 2025 Fashion Shop. Все права защищены. По-прежнему кроме ваших</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Global cart function - должна быть определена первой
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCountElements = document.querySelectorAll('#cartCount');
+            cartCountElements.forEach(el => {
+                el.textContent = cart.length;
+            });
+        }
+
+        // Products data
+        const products = [
+            { id: 1, name: 'Футболка Premium', price: 1990, category: 'clothing', image: 'fa-tshirt', badge: 'Хит', discount: 20 },
+            { id: 2, name: 'Футболка Classic', price: 1590, category: 'clothing', image: 'fa-tshirt', badge: '', discount: 0 },
+            { id: 3, name: 'Футболка Sport', price: 1790, category: 'clothing', image: 'fa-tshirt', badge: '', discount: 0 },
+            { id: 4, name: 'Кроссовки Sport', price: 4990, category: 'shoes', image: 'fa-shoe-prints', badge: 'Новинка', discount: 0 },
+            { id: 5, name: 'Кроссовки Running', price: 5990, category: 'shoes', image: 'fa-shoe-prints', badge: '', discount: 15 },
+            { id: 6, name: 'Ботинки Classic', price: 6990, category: 'shoes', image: 'fa-shoe-prints', badge: '', discount: 0 },
+            { id: 7, name: 'Солнцезащитные очки', price: 2490, category: 'accessories', image: 'fa-glasses', badge: '', discount: 0 },
+            { id: 8, name: 'Часы Premium', price: 8990, category: 'accessories', image: 'fa-watch', badge: 'Хит', discount: 10 },
+            { id: 9, name: 'Рюкзак Urban', price: 3490, category: 'accessories', image: 'fa-backpack', badge: '', discount: 0 },
+            { id: 10, name: 'Джинсы Slim Fit', price: 3990, category: 'clothing', image: 'fa-tshirt', badge: '', discount: 0 },
+            { id: 11, name: 'Куртка Denim', price: 7990, category: 'clothing', image: 'fa-tshirt', badge: 'Новинка', discount: 0 },
+            { id: 12, name: 'Кепка Snapback', price: 1290, category: 'accessories', image: 'fa-hat-cowboy', badge: '', discount: 0 }
+        ];
+
+        let filteredProducts = [...products];
+
+        function renderProducts(productsToRender) {
+            const container = document.getElementById('productsContainer');
+            
+            if (productsToRender.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="fas fa-search fa-5x text-muted mb-3"></i>
+                        <h4>Товары не найдены</h4>
+                        <p class="text-muted">Попробуйте изменить параметры поиска</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = productsToRender.map(product => {
+                const finalPrice = product.discount > 0 
+                    ? product.price - (product.price * product.discount / 100)
+                    : product.price;
+
+                return `
+                    <div class="product-card">
+                        ${product.badge ? `<span class="badge badge-danger product-badge">${product.badge}</span>` : ''}
+                        <div class="product-image">
+                            <i class="fas ${product.image} fa-5x text-primary"></i>
+                        </div>
+                        <div class="product-info">
+                            <h6>${product.name}</h6>
+                            <p class="text-muted small">Высокое качество</p>
+                            ${product.discount > 0 ? `
+                                <div class="mb-2">
+                                    <span class="text-muted"><s>${product.price.toLocaleString()} ₽</s></span>
+                                    <span class="badge badge-success ml-1">-${product.discount}%</span>
+                                </div>
+                                <div class="price">${finalPrice.toLocaleString()} ₽</div>
+                            ` : `
+                                <div class="price">${product.price.toLocaleString()} ₽</div>
+                            `}
+                            <div class="product-actions">
+                                <button class="btn btn-primary btn-sm btn-block mt-3 add-to-cart" data-id="${product.id}">
+                                    <i class="fas fa-shopping-cart"></i> В корзину
+                                </button>
+                                <a href="product-detail.html" class="btn btn-outline-primary btn-sm btn-block">
+                                    <i class="fas fa-eye"></i> Подробнее
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Add event listeners to cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    const product = products.find(p => p.id === productId);
+                    
+                    if (product) {
+                        const finalPrice = product.discount > 0 
+                            ? product.price - (product.price * product.discount / 100)
+                            : product.price;
+                        
+                        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                        cart.push({
+                            name: product.name,
+                            price: `${finalPrice.toLocaleString()} ₽`,
+                            quantity: 1,
+                            id: Date.now()
+                        });
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        updateCartCount();
+                        
+                        this.innerHTML = '<i class="fas fa-check"></i> Добавлено';
+                        this.disabled = true;
+                        setTimeout(() => {
+                            this.innerHTML = '<i class="fas fa-shopping-cart"></i> В корзину';
+                            this.disabled = false;
+                        }, 2000);
+                    }
+                });
+            });
+        }
+
+        function applyFilters() {
+            filteredProducts = [...products];
+
+            // Category filter
+            const selectedCategories = Array.from(document.querySelectorAll('.category-filter:checked'))
+                .map(cb => cb.value);
+            if (selectedCategories.length > 0) {
+                filteredProducts = filteredProducts.filter(p => selectedCategories.includes(p.category));
+            }
+
+            // Price filter
+            const selectedPrice = document.querySelector('.price-filter:checked').value;
+            if (selectedPrice !== 'all') {
+                if (selectedPrice === '0-2000') {
+                    filteredProducts = filteredProducts.filter(p => p.price <= 2000);
+                } else if (selectedPrice === '2000-5000') {
+                    filteredProducts = filteredProducts.filter(p => p.price > 2000 && p.price <= 5000);
+                } else if (selectedPrice === '5000+') {
+                    filteredProducts = filteredProducts.filter(p => p.price > 5000);
+                }
+            }
+
+            // Search filter
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                filteredProducts = filteredProducts.filter(p => 
+                    p.name.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            // Sort
+            const sortBy = document.getElementById('sortSelect').value;
+            if (sortBy === 'price-asc') {
+                filteredProducts.sort((a, b) => a.price - b.price);
+            } else if (sortBy === 'price-desc') {
+                filteredProducts.sort((a, b) => b.price - a.price);
+            } else if (sortBy === 'name') {
+                filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+            }
+
+            renderProducts(filteredProducts);
+        }
+
+        // Event listeners
+        document.querySelectorAll('.category-filter, .price-filter').forEach(filter => {
+            filter.addEventListener('change', applyFilters);
+        });
+
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('sortSelect').addEventListener('change', applyFilters);
+
+        document.getElementById('resetFilters').addEventListener('click', () => {
+            document.querySelectorAll('.category-filter').forEach(cb => cb.checked = true);
+            document.getElementById('price1').checked = true;
+            document.getElementById('searchInput').value = '';
+            document.getElementById('sortSelect').value = 'default';
+            applyFilters();
+        });
+
+        // View toggle
+        document.getElementById('gridView').addEventListener('click', function() {
+            document.getElementById('productsContainer').className = 'product-grid';
+            this.classList.add('active');
+            document.getElementById('listView').classList.remove('active');
+        });
+
+        document.getElementById('listView').addEventListener('click', function() {
+            document.getElementById('productsContainer').className = 'row';
+            this.classList.add('active');
+            document.getElementById('gridView').classList.remove('active');
+            applyFilters();
+        });
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts(products);
+            updateCartCount();
+        });
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

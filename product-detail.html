@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+    <title>Товар - Fashion Shop</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/icons/icon-192x192.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-shopping-bag"></i> Fashion Shop
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Товары</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="team.html">Команда</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge badge-danger" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="py-3 bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 bg-transparent">
+                    <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="products.html">Товары</a></li>
+                    <li class="breadcrumb-item active">Футболка Premium</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Product Detail -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Product Images -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="product-image text-center py-5">
+                                <i class="fas fa-tshirt" style="font-size: 10rem; color: #667eea;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Thumbnails -->
+                    <div class="row mt-3">
+                        <div class="col-3">
+                            <div class="card border-primary">
+                                <div class="card-body p-2 text-center">
+                                    <i class="fas fa-tshirt fa-2x text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card">
+                                <div class="card-body p-2 text-center">
+                                    <i class="fas fa-tshirt fa-2x text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card">
+                                <div class="card-body p-2 text-center">
+                                    <i class="fas fa-tshirt fa-2x text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card">
+                                <div class="card-body p-2 text-center">
+                                    <i class="fas fa-tshirt fa-2x text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="col-lg-6">
+                    <h1 class="mb-3">Футболка Premium</h1>
+                    
+                    <div class="mb-3">
+                        <span class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                        <span class="text-muted ml-2">(24 отзыва)</span>
+                    </div>
+
+                    <h2 class="text-danger mb-3">1 990 ₽</h2>
+                    <p class="text-muted"><s>2 490 ₽</s> <span class="badge badge-danger">-20%</span></p>
+
+                    <hr>
+
+                    <p class="lead">
+                        Стильная футболка из 100% хлопка премиум качества. 
+                        Идеально подходит для повседневной носки. Мягкая, дышащая ткань обеспечивает комфорт в течение всего дня.
+                    </p>
+
+                    <div class="mb-3">
+                        <p class="mb-2"><strong>Цвет:</strong></p>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline-secondary active">Белый</button>
+                            <button type="button" class="btn btn-outline-secondary">Черный</button>
+                            <button type="button" class="btn btn-outline-secondary">Синий</button>
+                            <button type="button" class="btn btn-outline-secondary">Красный</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="mb-2"><strong>Размер:</strong></p>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline-secondary">XS</button>
+                            <button type="button" class="btn btn-outline-secondary">S</button>
+                            <button type="button" class="btn btn-outline-secondary active">M</button>
+                            <button type="button" class="btn btn-outline-secondary">L</button>
+                            <button type="button" class="btn btn-outline-secondary">XL</button>
+                            <button type="button" class="btn btn-outline-secondary">XXL</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <p class="mb-2"><strong>Количество:</strong></p>
+                        <div class="input-group" style="width: 150px;">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" id="decreaseQty">-</button>
+                            </div>
+                            <input type="text" class="form-control text-center" id="quantity" value="1" readonly>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" id="increaseQty">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <button class="btn btn-primary btn-lg btn-block mb-2" id="addToCartBtn">
+                            <i class="fas fa-shopping-cart"></i> Добавить в корзину
+                        </button>
+                        <button class="btn btn-outline-danger btn-lg btn-block">
+                            <i class="fas fa-heart"></i> В избранное
+                        </button>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-truck"></i> Бесплатная доставка при заказе от 3000 ₽
+                    </div>
+
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h6>Характеристики:</h6>
+                            <ul class="list-unstyled mb-0">
+                                <li><i class="fas fa-check text-success"></i> Материал: 100% хлопок</li>
+                                <li><i class="fas fa-check text-success"></i> Страна производства: Турция</li>
+                                <li><i class="fas fa-check text-success"></i> Уход: машинная стирка 30°C</li>
+                                <li><i class="fas fa-check text-success"></i> Гарантия: 6 месяцев</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#description">Описание</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#reviews">Отзывы (24)</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#delivery">Доставка</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content border-left border-right border-bottom p-4">
+                        <div id="description" class="tab-pane active">
+                            <h4>Описание товара</h4>
+                            <p>
+                                Футболка Premium - это идеальное сочетание стиля, комфорта и качества. 
+                                Изготовлена из премиального хлопка, который обеспечивает отличную воздухопроницаемость 
+                                и мягкость при носке.
+                            </p>
+                            <p>
+                                Современный крой и классический дизайн делают эту футболку универсальной - 
+                                она отлично подойдет как для повседневных образов, так и для спортивного стиля.
+                            </p>
+                            <h5>Особенности:</h5>
+                            <ul>
+                                <li>Премиальный 100% хлопок</li>
+                                <li>Усиленные швы для долговечности</li>
+                                <li>Не деформируется после стирки</li>
+                                <li>Яркие цвета не выгорают</li>
+                                <li>Гипоаллергенная ткань</li>
+                            </ul>
+                        </div>
+
+                        <div id="reviews" class="tab-pane fade">
+                            <h4>Отзывы покупателей</h4>
+                            <div class="media mb-4">
+                                <i class="fas fa-user-circle fa-3x mr-3 text-muted"></i>
+                                <div class="media-body">
+                                    <h6>Анна К. <small class="text-muted">15.12.2024</small></h6>
+                                    <div class="text-warning mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p>Отличная футболка! Качество на высоте, ткань приятная к телу. Размер соответствует.</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="media mb-4">
+                                <i class="fas fa-user-circle fa-3x mr-3 text-muted"></i>
+                                <div class="media-body">
+                                    <h6>Дмитрий С. <small class="text-muted">12.12.2024</small></h6>
+                                    <div class="text-warning mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <p>Хорошая футболка за свои деньги. Качество хорошее, но хотелось бы больше цветов.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="delivery" class="tab-pane fade">
+                            <h4>Информация о доставке</h4>
+                            <h6>Способы доставки:</h6>
+                            <ul>
+                                <li><strong>Курьерская доставка</strong> - 300 ₽ (2-3 рабочих дня)</li>
+                                <li><strong>Экспресс доставка</strong> - 600 ₽ (1 рабочий день)</li>
+                                <li><strong>Самовывоз</strong> - Бесплатно (из магазина)</li>
+                            </ul>
+                            <p class="text-success">
+                                <i class="fas fa-check-circle"></i> 
+                                Бесплатная доставка при заказе от 3000 ₽
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="mb-4">Похожие товары</h3>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-tshirt fa-5x text-primary"></i>
+                        </div>
+                        <div class="product-info">
+                            <h6>Футболка Classic</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">1 590 ₽</span>
+                                <button class="btn btn-sm btn-primary">Купить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-tshirt fa-5x text-primary"></i>
+                        </div>
+                        <div class="product-info">
+                            <h6>Футболка Sport</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">1 790 ₽</span>
+                                <button class="btn btn-sm btn-primary">Купить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-tshirt fa-5x text-primary"></i>
+                        </div>
+                        <div class="product-info">
+                            <h6>Футболка Comfort</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">1 690 ₽</span>
+                                <button class="btn btn-sm btn-primary">Купить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-tshirt fa-5x text-primary"></i>
+                        </div>
+                        <div class="product-info">
+                            <h6>Футболка Style</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">1 890 ₽</span>
+                                <button class="btn btn-sm btn-primary">Купить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-2">&copy; 2025 Fashion Shop. Все права защищены. По-прежнему кроме ваших</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Quantity controls
+        let quantity = 1;
+        document.getElementById('increaseQty').addEventListener('click', function() {
+            quantity++;
+            document.getElementById('quantity').value = quantity;
+        });
+        document.getElementById('decreaseQty').addEventListener('click', function() {
+            if (quantity > 1) {
+                quantity--;
+                document.getElementById('quantity').value = quantity;
+            }
+        });
+
+        // Add to cart
+        document.getElementById('addToCartBtn').addEventListener('click', function() {
+            const product = {
+                name: 'Футболка Premium',
+                price: '1 990 ₽',
+                quantity: quantity,
+                id: Date.now()
+            };
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            alert(`Добавлено ${quantity} шт. в корзину!`);
+            updateCartCount();
+        });
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+        updateCartCount();
+    </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+    <title>Оформление заказа - Fashion Shop</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/icons/icon-192x192.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-shopping-bag"></i> Fashion Shop
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Товары</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="team.html">Команда</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge badge-danger" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-gradient-primary text-white py-5">
+        <div class="container text-center">
+            <h1 class="display-4">Оформление заказа</h1>
+            <p class="lead">Заполните данные для доставки</p>
+        </div>
+    </section>
+
+    <!-- Checkout Form -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Progress Steps -->
+                    <div class="mb-4">
+                        <div class="progress" style="height: 3px;">
+                            <div class="progress-bar bg-primary" style="width: 66%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <small class="text-success"><i class="fas fa-check-circle"></i> Корзина</small>
+                            <small class="text-primary"><strong>Оформление</strong></small>
+                            <small class="text-muted">Подтверждение</small>
+                        </div>
+                    </div>
+
+                    <form id="checkoutForm">
+                        <!-- Personal Info -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-user"></i> Личные данные
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label>Имя *</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label>Фамилия *</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label>Email *</label>
+                                        <input type="email" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label>Телефон *</label>
+                                        <input type="tel" class="form-control" placeholder="+7 (___) ___-__-__" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Info -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-truck"></i> Доставка
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label>Способ доставки *</label>
+                                    <div class="custom-control custom-radio mb-2">
+                                        <input type="radio" id="delivery1" name="delivery" class="custom-control-input" checked>
+                                        <label class="custom-control-label" for="delivery1">
+                                            Курьерская доставка - 300 ₽
+                                            <small class="text-muted d-block">2-3 рабочих дня</small>
+                                        </label>
+                                    </div>
+                                    <div class="custom-control custom-radio mb-2">
+                                        <input type="radio" id="delivery2" name="delivery" class="custom-control-input">
+                                        <label class="custom-control-label" for="delivery2">
+                                            Экспресс доставка - 600 ₽
+                                            <small class="text-muted d-block">1 рабочий день</small>
+                                        </label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="delivery3" name="delivery" class="custom-control-input">
+                                        <label class="custom-control-label" for="delivery3">
+                                            Самовывоз - Бесплатно
+                                            <small class="text-muted d-block">Забрать из магазина</small>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label>Город *</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label>Индекс *</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label>Улица, дом, квартира *</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label>Комментарий к заказу</label>
+                                        <textarea class="form-control" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-credit-card"></i> Способ оплаты
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="custom-control custom-radio mb-2">
+                                    <input type="radio" id="payment1" name="payment" class="custom-control-input" checked>
+                                    <label class="custom-control-label" for="payment1">
+                                        Картой онлайн
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio mb-2">
+                                    <input type="radio" id="payment2" name="payment" class="custom-control-input">
+                                    <label class="custom-control-label" for="payment2">
+                                        Наличными при получении
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="payment3" name="payment" class="custom-control-input">
+                                    <label class="custom-control-label" for="payment3">
+                                        Картой при получении
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="custom-control custom-checkbox mb-4">
+                            <input type="checkbox" class="custom-control-input" id="agree" required>
+                            <label class="custom-control-label" for="agree">
+                                Я согласен с условиями <a href="#">пользовательского соглашения</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                            Подтвердить заказ
+                        </button>
+                    </form>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card sticky-top" style="top: 100px;">
+                        <div class="card-header bg-gradient-primary text-white">
+                            <h5 class="mb-0">Ваш заказ</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="orderSummary"></div>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Товары:</span>
+                                <span id="checkoutSubtotal">0 ₽</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Доставка:</span>
+                                <span>300 ₽</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <strong>Итого:</strong>
+                                <strong id="checkoutTotal" class="text-danger">0 ₽</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-2">&copy; 2025 Fashion Shop. Все права защищены. По-прежнему кроме ваших</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Load order summary
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const orderSummary = document.getElementById('orderSummary');
+        
+        if (cart.length === 0) {
+            window.location.href = 'cart.html';
+        }
+
+        let subtotal = 0;
+        orderSummary.innerHTML = cart.map(item => {
+            const price = parseFloat(item.price.replace(/[^\d]/g, ''));
+            subtotal += price;
+            return `
+                <div class="d-flex justify-content-between mb-2">
+                    <small>${item.name}</small>
+                    <small>${item.price}</small>
+                </div>
+            `;
+        }).join('');
+
+        document.getElementById('checkoutSubtotal').textContent = `${subtotal.toLocaleString()} ₽`;
+        document.getElementById('checkoutTotal').textContent = `${(subtotal + 300).toLocaleString()} ₽`;
+
+        // Form submit
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            localStorage.setItem('cart', JSON.stringify([]));
+            alert('Заказ успешно оформлен! Номер заказа: #' + Math.floor(Math.random() * 10000));
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
